@@ -68,6 +68,7 @@ if(fs.existsSync(neueHelloDatei)){
     await fsPromise.unlink(neueHelloDatei);
 } else {
     await fsPromise.writeFile(neueHelloDatei, "Moinsen", 
+    
     {encoding: "utf8"}),
     (error) => {
         if(error){
