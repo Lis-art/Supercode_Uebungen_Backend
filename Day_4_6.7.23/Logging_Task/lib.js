@@ -6,86 +6,50 @@ const logPathError = new URL ("./logs/error.txt",import.meta.url);
 const logPathWarn =new URL ("./logs/warn.txt",import.meta.url);
 const logPathInfo = new URL ("./logs/info.txt",import.meta.url);
 
-async function addToLog  (param, logTyp){
+
     
+    // ! FUNCTION !
+export const addToLog = async (addText, logLevel) => {
     const date = new Date().toUTCString();
-    const ausgabe = `\n ${logTyp}\n${param}\n ${date}`;
-
-   /*  await fsPromises.writeFile(logPathError, ausgabe, {encoding: "utf8"});
-    await fsPromises.writeFile(logPathWarn, ausgabe, {encoding: "utf8"});
-    await fsPromises.writeFile(logPathInfo, ausgabe, {encoding: "utf8"}); */
-
-    if (fs.existsSync(logPath)){
-        fs.appendFileSync(logPath, ausgabe, {encoding: "utf8"})
-        console.log("Inhalt zugefügt");
-
+    const ausgabe = `\n${logLevel} - ${date} - ${addText}` ;
+  
+    // Checken, ob Unterordner existiert. Wenn nicht wird er erstellt.
+    const logDirUrl = new URL("./logs", import.meta.url);
+    !fs.existsSync(logDirUrl)
+      ? await fsPromises.mkdir(logDirUrl, { recursive: true })
+      : null;
+  
+    if (fs.existsSync(logPath)) {
+      fs.appendFileSync(logPath, ausgabe, {
+        encoding: "utf-8",
+      });
+      console.log("Inhalt hinzugefügt");
     } else {
-        await fsPromises.writeFile(logPath, ausgabe, {encoding: "utf8"}),
-        (error) => {
-            if(error){
-                console.log(error);
-            }
-        }
+      fs.writeFileSync(logPath, ausgabe, { encoding: "utf-8" });
+      console.log("Datei erstellt");
     }
-
-    
-
-    if(logTyp === "error"){
-        await fsPromises.writeFile(logPathError, ausgabe, {encoding: "utf8"})
-    } else if (logTyp === "warn"){
-        await fsPromises.writeFile(logPathWarn, ausgabe, {encoding: "utf8"})
-    } else if (logTyp === "info"){
-        await fsPromises.writeFile(logPathInfo, ausgabe, {encoding: "utf8"})
+  
+    // EINORDNUNG IN LOG LEVELS, je nach Parametervergabe
+    // Wenn logLevel === "übergebener Parameter im Funktionsaufruf", wird der dynamische Path ausgewählt
+    let dynPath;
+    if (logLevel === "error") {
+      dynPath = errorTxtPath;
+    } else if (logLevel === "warn") {
+      dynPath = warnTxtPath;
+    } else if (logLevel === "info") {
+      dynPath = infoTxtPath;
     } else {
-        console.log("mein Error");
-    } 
-
-
-    let dynPath; 
-    if (loglevel === "error"){
-        dynPath = logPathError
-        if (fs.existsSync(logPathError)){
-            fs.appendFileSync(logPathError, ausgabe, {encoding: "utf8"});
-        } else {
-            console.log("Inhalt zugefügt ERROR")
-        }
-    } else if (loglevel === "warn"){
-        dynPath = logPathWarn
-        if (fs.existsSync(logPathWarn)){
-            fs.appendFileSync(logPathWarn, ausgabe, {encoding: "utf8"});
-        } else {
-            console.log("Inhalt zugefügt WARN");
-        }
-    } else if (loglevel === "info"){
-        dynPath = logPathInfo
-        if (fs.existsSync(logPathInfo)){
-            fs.appendFileSync(logPathInfo, ausgabe, {encoding: "utf8"});
-        } else {
-            console.log("Inhalt zugefügt INFO");
-        }
-    } else {
-        console.log("SUPER ERROR");
+      console.error("error: Typ gibt es nicht");
     }
-
-/* 
-    if (fs.existsSync(logPathError)){
-        fs.appendFileSync(logPathError, ausgabe, {encoding: "utf8"})
-        console.log("Inhalt zugefügt ERROR");
-
-    } else if (fs.existsSync(logPathWarn)) {
-        fs.appendFileSync(logPathWarn, ausgabe, {encoding: "utf8"})
-        console.log("Inhalt zugefügt WARN");
-
-    } else if (fs.existsSync(logPathInfo)) {
-        fs.appendFileSync(logPathInfo, ausgabe, {encoding: "utf8"})
-        console.log("Inhalt zugefügt INFO");
-
+  
+    // Wenn die Datei existiert, wird Inhalt hinzugefügt. Wenn nicht wird die Datei mit Inhalt erestellt.
+    if (fs.existsSync(dynPath)) {
+      fs.appendFileSync(dynPath, ausgabe, { encoding: "utf8" });
+      console.log("Inhalt zugefügt");
     } else {
-        console.log("error von typen");
-    } */
+      fs.writeFileSync(dynPath, ausgabe, { encoding: "utf-8" });
+      console.log("Datei erstellt");
+    }
+};
 
-}
 export default addToLog
-
-
-
