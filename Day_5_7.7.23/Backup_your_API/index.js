@@ -21,21 +21,21 @@ const exists = async (path) => {
 
 export const folder = async (dataFolder) => {
     let folderExists = await exists(dataFolder);
-    folderExists = false;
-    console.log(folderExists);
+    //folderExists = false;
+    //console.log(folderExists);
     if(!folderExists){
         await fsPromises.mkdir(dataFolder);
     } else {
         console.log("NOPE");
     }
  
-/*     fetch("https://jsonplaceholder.typicode.com/")
+     fetch("https://jsonplaceholder.typicode.com/posts")
     .then((response) => response.json())
     .then((data)=> console.log(data))
     .catch((error) => {
         console.log("das war wohl nix mit dem fetch", error);
     });
-  */
+  
 
     await fsPromises.appendFile(postFile, (mydata), {encoding: "utf-8"});
 
