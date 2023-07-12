@@ -79,7 +79,7 @@ app.put("/contacts/:id", (req, res) => {
 		contacts[index].name = name ? name : contacts[index.name];
 		contacts[index].tele = tel ? tel : contacts[index.name];
 	}
-
+  
 	res.json(contacts);
 });
 
