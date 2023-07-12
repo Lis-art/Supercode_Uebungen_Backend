@@ -29,14 +29,13 @@ export const folder = async (dataFolder) => {
         console.log("NOPE");
     }
  
-     fetch("https://jsonplaceholder.typicode.com/posts")
+    fetch("https://jsonplaceholder.typicode.com/posts")
     .then((response) => response.json())
     .then((data)=> console.log(data))
     .catch((error) => {
         console.log("das war wohl nix mit dem fetch", error);
     });
   
-
     await fsPromises.appendFile(postFile, (mydata), {encoding: "utf-8"});
 
 }
