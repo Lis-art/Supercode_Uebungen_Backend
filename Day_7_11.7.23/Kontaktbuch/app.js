@@ -79,7 +79,7 @@ app.put("/contacts/:id", (req, res) => {
 		contacts[index].name = name ? name : contacts[index.name];
 		contacts[index].tele = tel ? tel : contacts[index.name];
 	}
-  
+
 	res.json(contacts);
 });
 
@@ -100,10 +100,6 @@ app.delete("/contacts/:id", (req, res) => {
 });
 // die eins gibt die Länge an wieviel gelöscht werden soll
 // Browser dings localhost:3000/contacts/3 -> gibt an welche id gelöscht werden soll
-
-
-
-
 
 
 
