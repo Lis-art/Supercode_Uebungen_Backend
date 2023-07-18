@@ -1,4 +1,4 @@
-function example (){
+function example () {
     if(true){
         throw new Error ("It's true");
         //new Error - ausgabe alles wo node:internal steht kann ignoriert werden, andere fehler nicht - zeigt konkrete stelle an

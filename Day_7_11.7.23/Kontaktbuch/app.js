@@ -82,18 +82,24 @@ app.post("/contacts", (req, res) => {
 // Kontakt anhand einer Id aktualisieren
 app.put("/contacts/:id", (req, res) => {
 	const id = Number(req.params.id);
+  //Hier wird die ID aus den Anfrageparametern extrahiert (req.params.id). Der Wert wird mit der Number-Funktion in eine Zahl umgewandelt und der Variablen id zugewiesen.
 	const { name, tel } = req.body;
+  // Hier werden die Werte name und tel aus dem Anfragekörper (req.body) extrahiert. Diese Werte werden den Variablen name und tel zugewiesen.
 	const index = contacts.findIndex((contact) => {
 		return contact.id === id;
+    //Hier wird der Index des Kontakts in einem Array namens contacts gesucht. Die findIndex-Funktion wird verwendet, um den Index des ersten Elements im Array zu finden, für das die angegebene Bedingung (contact.id === id) erfüllt ist. Der Parameter (contact) => { ... } ist eine ArrowFunktion, die die Bedingung definiert.
 	});
 	if (index !== -1) {
+   //Diese Bedingung überprüft, ob der Index des Kontakts im Array gefunden wurde. Wenn der Index ungleich -1 ist, bedeutet das, dass ein Kontakt mit der gegebenen ID gefunden wurde.
 		contacts[index].name = name ? name : contacts[index.name];
-		contacts[index].tele = tel ? tel : contacts[index.name];
+    //Hier wird der Name des Kontakts aktualisiert. Wenn name einen Wert hat (truthy), wird der Wert verwendet, andernfalls wird der ursprüngliche Name beibehalten.
+		contacts[index].tele = tel ? tel : contacts[index.tele];
+    //Hier wird die Telefonnummer des Kontakts aktualisiert. Wenn tel einen Wert hat (truthy), wird der Wert verwendet, andernfalls wird die ursprüngliche Telefonnummer beibehalten.
 	}
-
 	res.json(contacts);
+  //Die Antwort wird als JSON zurückgegeben. Hier wird das contacts-Array als JSON-Objekt zurückgegeben, um den aktualisierten Zustand aller Kontakte zu übermitteln.
 });
-
+//Die gegebene Code-Zeile behandelt also eine PUT-Anfrage an den "/contacts/:id"-Endpunkt. Sie erwartet eine ID, den Namen und die Telefonnummer eines Kontakts im Anfragekörper und aktualisiert den entsprechenden Kontakt im contacts-Array. Schließlich gibt sie das aktualisierte Array als JSON-Antwort zurück.
 
 
 

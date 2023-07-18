@@ -9,7 +9,7 @@ const contents = await fs.readFile(filePath, { encoding: 'utf8' });
 
 /* console.log(typeof contents); */
 // gibt string zurück => SCHWARZ
-// müssen darus selber JS Object machen => zeile 8 GRÜN
+// müssen daraus selber JS Object machen => zeile 8 GRÜN
 
 const packageJSON = JSON.parse(contents);
 

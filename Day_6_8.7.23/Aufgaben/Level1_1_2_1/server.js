@@ -37,7 +37,7 @@ const handleRequest = (req, res) => {
 
 		sendFile("./index.html", res);
 	} else {
-		// Wenn die URL der Anfrage nicht "/"" entspricht, wird die angeforderte Datei gesendet.
+		// Wenn die URL der Anfrage nicht "/" entspricht, wird die angeforderte Datei gesendet.
 
 		sendFile("." + req.url, res);
 	}
@@ -55,7 +55,7 @@ const handleRequest = (req, res) => {
 
 // Wenn die URL der Anfrage nicht "/" entspricht (d.h. es handelt sich um eine andere URL),
 // wird die Funktion sendFile erneut aufgerufen.
-// Diesmal wird der Dateipfad als "." + req.url gebildet, um den angeforderten Dateipfad relativ zur aktuellen Arbeitsverzeichnis zu konstruieren.
+// Diesmal wird der Dateipfad als "." + req.url gebildet, um den angeforderten Dateipfad relativ zum aktuellen Arbeitsverzeichnis zu konstruieren.
 // Das res-Objekt wird wieder als zweites Argument übergeben.
 
 // Die Funktion handleRequest fungiert als Router für die HTTP-Anfragen.

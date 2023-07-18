@@ -16,7 +16,7 @@ export const firstElementNumbers = () => {
 //#Gib alle AUSSER dem letzten Element des Arrays zurück - slice
 /* 
 export const notLastName = (array) => {
-      const allWithoutLastName = array.slice(0, -1);
+    const allWithoutLastName = array.slice(0, -1);
     return allWithoutLastName 
 
 }

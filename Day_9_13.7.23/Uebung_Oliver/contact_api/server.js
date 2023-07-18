@@ -1,52 +1,43 @@
 import express from "express";
-import {} from "./services/contacts.js";
+import { add, getAll, getOneById } from "./services/contacts.js";
+
 const PORT = 3001;
 const app = express();
 
-// ... Routen - kann man erstmal alle so runterschreiben
+app.use(express.json());
 
-// alle contacts
-app.get("/contacts", (req,res) => {
-    // TODO: Implement
-    res.send("not implemented")
+//... Routen
+app.get("/contacts", async (req, res) => {
+  // TODO: Implement
+  const allContacts = await getAll();
+  res.send(allContacts);
 });
 
-
-// bestimmten contact
-app.get("/contacts/:id", (req,res) => {
-    // TODO: Implement
-    res.send("not implemented")
+app.get("/contacts/:id", async (req, res) => {
+  const contact = await getOneById(req.params.id);
+  res.send(contact);
 });
 
+app.post("/contacts", async (req, res) => {
+  const contact = req.body;
+  const createdContact = await add(contact);
 
-// contact hinzufügen
-app.post("/contacts", (req,res) => {
-    // TODO: Implement
-    res.send("not implemented")
+  res.send({
+    message: "Added contact",
+    data: createdContact,
+  });
 });
 
-
-// ändere einen contact
-app.put("/contacts/:id", (req,res) => {
-   // TODO: Implement
-    res.send("not implemented")
+app.put("/contacts/:id", (req, res) => {
+  // TODO: Implement
+  res.send("Not Implemented");
 });
 
-
-// lösche einen contact
-app.delete("/contacts/:id", (req,res) => {
-    // TODO: Implement
-    res.send("not implemented")
+app.delete("/contacts/:id", (req, res) => {
+  // TODO: Implement
+  res.send("Not Implemented");
 });
-
-
-
-
-
-
-
-
 
 app.listen(PORT, () => {
-    console.log(`Server running on Port: ${PORT}`);
-}) 
+  console.log(`Server running on Port: ${PORT}`);
+});

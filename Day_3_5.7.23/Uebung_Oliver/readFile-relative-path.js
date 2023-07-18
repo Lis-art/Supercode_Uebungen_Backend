@@ -16,4 +16,4 @@ const fsPromiseData = await fs.readFile("./input.txt",
 console.log(fsPromiseData);
 // für realtiven Pfad muss man im direkten Ordner sein
 // pfad nicht realtiv zur Datei in der wir sind sondern relativ dazu wo node script ausgeführt wird
-// um zu sagen guck von hier und nicht von node ausfühtung => input meta url
+// um zu sagen guck von hier und nicht von node ausfühtung => import meta url

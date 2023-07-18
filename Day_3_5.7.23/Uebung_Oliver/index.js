@@ -27,12 +27,18 @@ fs.readFile("./input.txt", {encoding: "utf8"},(err, data)=>{
 const readFilePromise = (filePath) => 
 new Promise ((resolve, reject) => {
     fs.readFile(filePath, {encoding: "utf8"}, (err, data) => {
+        //Innerhalb der Promise-Funktion wird die Funktion fs.readFile aufgerufen, um eine Datei mit dem angegebenen filePath zu lesen
         if(err) reject(err);
+        //Wenn beim Lesen der Datei ein Fehler (err) auftritt, wird die Promise abgelehnt (rejected), indem die reject-Funktion mit dem Fehler als Argument aufgerufen wird.
         resolve(data);
+        //Wenn das Lesen der Datei erfolgreich abgeschlossen wurde, wird die Promise erfüllt (resolved), indem die resolve-Funktion mit den gelesenen Daten (data) als Argument aufgerufen wird.
     });
 });
 console.log(readFilePromise("./input.txt"));
+//Hier wird die readFilePromise-Funktion aufgerufen und der Dateipfad ./input.txt übergeben.
 readFilePromise("./input.txt").then((data)=> console.log({promiseData: data}));
+//Anschließend wird die then-Methode auf der zurückgegebenen Promise aufgerufen, um eine Funktion zu registrieren, die aufgerufen wird, sobald die Promise erfüllt ist. In diesem Fall wird die Funktion (data) => console.log({promiseData: data}) übergeben, die die Daten data mit console.log ausgibt
+
 
 // nicht auf reihenfolge der Logs bei asynchronem code verlassen!
 // um Problem zu umgehen: console.log({promiseData: data}) als Object machen und man weiß welche daten zurückkommen
@@ -56,8 +62,8 @@ console.log({fsPromiseData});
 
 //# Async / Await ==== Promises
 
-const prom = ()=> new Promise()
-const prom2 = async (filePath)=>{
+const prom = () => new Promise()
+const prom2 = async (filePath) => {
     // async macht aus Funktion ein Promise!!!! 
     if(!filePath){
         //Promise rejected bei Error . catch
@@ -71,7 +77,7 @@ const prom2 = async (filePath)=>{
     // wenn das fehlschlägt ==> error
 
 
-    return true //Promise resolved, also (.then) geh in in then Callback
+    return true //Promise resolved, also (.then) geh in then Callback
 }
 
 

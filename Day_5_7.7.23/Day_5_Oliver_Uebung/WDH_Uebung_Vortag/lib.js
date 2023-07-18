@@ -46,9 +46,6 @@ export const log = async (logtxt) => {
     // write log
     await fs.appendFile(logFile, `${logtxt}\n :: ${date}\n`, {encoding: "utf-8"});
     // default flag -a (options object - siehe doku) => sagt aus öffne eine datei zum text anhängen und wenn es die nicht gibt erstelle sie
-
-
-   
 }
 
 //==================================
@@ -79,7 +76,6 @@ export const log2 = async (logtxt) => {
     await setup();
     const message = createLogMessage(logtxt, logLevel);
     await fs.appendFile(logFile, `${logtxt}\n :: ${date}\n`, {encoding: "utf-8"})
-
 }
 
 // geben infos hier rein um messages zu erstellen

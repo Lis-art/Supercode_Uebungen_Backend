@@ -104,7 +104,6 @@ getPosts().then((posts) => {
     res.json(posts);
 })
 app.get("/post-async", async (req,res) => {
-    //mit Doppelpunkt gibt man einen Platzhalter für die ID
     const posts = await getPosts();
     console.log(posts);
     res.send(data);

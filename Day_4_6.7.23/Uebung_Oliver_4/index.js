@@ -22,7 +22,7 @@ person_object_2.age = 100;
 person_object_2.name = "Frida Kahlo";
 
 // # Bracket notation -> WERDEN WIR VIEL VERWENDEN!
-myObj["job title"] = "This is bracket noatation/Dev";
+myObj["job title"] = "This is bracket notation/Dev";
 
 myObj2[0] = "Something";
 myObj2[1] = "Something else";
@@ -72,10 +72,10 @@ console.log(aObj);
 
 console.log(aObj, aObj === bObj);
 
-//# Objekte und auch Arrays verstecken sich im Speicher und Variable zeigt den Ort des Speicherplatzes auf - spraed Operator oder Object Assignment um neuen Platz zuzuschreiben bzw. rüber zu reichen
+//# Objekte und auch Arrays verstecken sich im Speicher und Variable zeigt den Ort des Speicherplatzes auf - spread Operator oder Object Assignment um neuen Platz zuzuschreiben bzw. rüber zu reichen
 
 // # Array Methoden - 2 Arten 
-// 1. Aktion macht was und gib Kopie zurück - e.g. Map
+// 1. Aktion macht was und gibt Kopie zurück - e.g. Map
 const sourceArr = [1, 2, 3];
 const arr = sourceArr.map((num) => + 2)
 console.log({ sourceArr, arr });
@@ -96,15 +96,13 @@ const arrayMap = (arr, mapFn) => {
 
     // for of - wert der elemente
     for(let element of arr){
-        //onsole.log(element);
+        //console.log(element);
         //mapFn benutzen 
         const mapFnResult = mapFn(element);
         //resultat in neues Array pushen
         newArr.push(mapFnResult);
     }
     
-    
-
     // for in - index
     for(let i = 0; i < arr.length; i++){
         
@@ -114,7 +112,6 @@ const arrayMap = (arr, mapFn) => {
         //resultat in neues Array pushen
         newArr[i] = mapFnResult;
     }
-
     return newArr;
 };
 // Funktion sehr mächtig weil wir andere übergeben
@@ -124,7 +121,7 @@ const arrayMap = (arr, mapFn) => {
 //callback Funktion mit Parametern
 const result = arrayMap([1,2,3], (num) => num +2);
 console.log(result);
-// 
+
 if(result[0] === 2 && result[1] === 4 && result[2] === 6) {
     console.log("YES");
 } else {

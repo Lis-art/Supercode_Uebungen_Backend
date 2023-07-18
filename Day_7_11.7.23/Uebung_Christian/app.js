@@ -7,7 +7,6 @@ app.use((req, res, next)=> {
     
     next()
     // ohne next würde request middelware nicht finden
-
 })
 
 
