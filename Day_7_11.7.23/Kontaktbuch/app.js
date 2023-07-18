@@ -14,10 +14,15 @@ const getId = (contact) => {
 // Middelware
 app.use(express.json());
 
+
+
 // Alle Kontakte auslesen
 app.get("/contacts", (req, res) => {
   res.json(contacts);
 });
+
+
+
 
 // Bestimmten Kontakt anhand der ID aufrufen
 app.get("/contacts/:id", (req, res) => {
@@ -32,6 +37,9 @@ app.get("/contacts/:id", (req, res) => {
   res.json(selectedContact);
 });
 
+
+
+
 // Kontakt erstellen
 app.post("/contacts", (req, res) => {
   const contact = { name: "Paula", age: 22 };
@@ -39,6 +47,9 @@ app.post("/contacts", (req, res) => {
   contacts.push(contact);
   res.json(contacts);
 });
+
+
+
 
 
 // Vorlage

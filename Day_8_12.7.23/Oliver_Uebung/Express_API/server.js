@@ -5,18 +5,23 @@ import axios from 'axios';
 import {getPosts} from "./postService.js"
 
 
-//Server einrichten
+//Server einrichten:
 const PORT = 3001;
+// Zimmernummer wo auf dem PC das Programm laufen soll
 const app = express();
+// erstellen einer express instanz
 
-//Route/Endpunkt festlegen + Test mit Thunderclient localhost:3001/status
+
+//erste Route/Endpunkt festlegen + Test mit Thunderclient localhost:3001/status
 app.get("/status", (req,res)=>{
     res.status(200).send("OK");
-    // 200 um sich bestimmten Fehlercode anzeigen zu lassen
+    // 200 + OK um sich bestimmte Rückgabe anzeigen zu lassen, Test Test
 })
 
 
 //# LEVEL 1 und 2 ? - Erstelle einen GET  Endpunkt /status mit dem response-code: 200 der den text zurück gibt OK 
+
+// get = HTTP Verb / post = Endpunkt(URL Path) / Callback mit (Request, Template Response)
 app.get("/post", (req,res)=>{
     // bei fetch .json benutzen
     // man kriegt header oder body daten bei fetch - axios nimmt das ab - s.unten
@@ -31,13 +36,15 @@ app.get("/post", (req,res)=>{
     })
     res.send ("OKI DOKI");
     
+
+    //holen hier alle Posts (als Promise) und senden diese Posts als JSON zurück!
     getPosts().then((posts) => {
         console.log(posts);
         res.json(posts);
   });
 });
- */
-
+ 
+*/
     //Vergleich fetch und axios
     // gibt json response zurück und transformiert body entsprechend
     axios
@@ -52,6 +59,7 @@ app.get("/post", (req,res)=>{
 })
 
 // Promise mit async und await
+// mache aus dieser Funktion einen Promise -> macht async / await = dient zum warten bis alle daten (posts) da sind, pausiere den umliegenden Promise
 app.get("/post-async", async (req,res)=>{
     // wir warten und schreiben bei variablen deklaration await
     const {data} = await axios
@@ -59,17 +67,28 @@ app.get("/post-async", async (req,res)=>{
     );
 
     console.log(data);
+    //nehme posts und sende diese zurück
     res.json(data);
 });
 
 
 // # LEVEL 3 - Erstelle einen GET Endpunkt der /posts/<id> der nur den post aus mit der id <id>  zurück gibt.
+//GET Methode
+// individuelle Posts
+// asynchrone Funktion
 app.get("/post/:id", async (req,res) => {
-    //mit Doppelpunkt gibt man einen Platzhalter für die ID
-    const id = Number(req.params.id)
+    //mit Doppelpunkt gibt man einen Platzhalter für die ID -> variable Route
+    // aus dem request holen wir uns die ID
+    // speichern diese als Number in const 'id'
+    const id = Number(req.params.id) 
+    // => id / Pizza ->  enthält wahren Wert
+    // wir warten auf getPostsByID aus xxx
+    // diese soll bestimmten Post zurückgeben
+    // diesen Wert speichern wir dann in Data
     const {data} = await axios.get(
         `https://jsonplaceholder.typicode.com/posts/${id}`
     );
+    //senden Antwort mit data (post)
     res.send(data);
 });
 
@@ -93,8 +112,8 @@ app.get("/post-async", async (req,res) => {
 
 
 // # LEVEL 5 
-app.get("/post/:id", async (req,res) => {
-    const id = Number(req.params.id)
+app.get("/post/:requestId", async (req,res) => {
+    const id = Number(req.params.requestId)
     const data = getPostsByID(id);
     res.send(data);
 });
@@ -129,3 +148,4 @@ export const getPostsByID = async () => {
 app.listen(PORT, ()=> {
     console.log(`Server is running on PORT: ${PORT}`);
 })
+// App wird ein Port zugewiesen / lausche auf Port XY / wenn erfolgreich log kommt
