@@ -6,9 +6,18 @@ const postSchema = new mongoose.Schema( {
         type: String,
         required: true
     },
-    content: String,
-    author: String,
-    views: Number,
+    content: {
+        type: String,
+        minlength: 5,
+        maxlength: 50,
+        required: true
+    },
+    author: {
+        type: mongoose.Types.ObjectId,
+        required: true,
+        immutable: true
+        // Author dadurch nicht veränderbar
+    }
 })
 
 export const Post = mongoose.model("Post", postSchema)

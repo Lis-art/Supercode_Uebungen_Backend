@@ -1,0 +1,61 @@
+erstmal vite usw einrichten
+npm run dev
+npm i react router dom 
+import {Browserrouter,..}
+npm i axios
+
+home jsx anlegen 
+axios importieren
+da drin dann mit axios posts holen
+use state und use effect anlegen
+im use Effect dann daten fetchen
+proxy in vite, changeOrigin
+check in console ob array und posts ankommen
+im return posts mappen
+key post.id
+
+components ordner erstellen
+createPostForm.jsx erstellen
+mit return from
+inputfeld type text + ref={refTitle}
+react: import useRef from react
+const titleRef = useRef()
+onclick titleRef.current.value - spart useState
+
+im home Funktion aus createPostForm einbinden
+wie getDocElbyId
+
+für jedes einzelne inputfeld muss ein ref erstellt werden
+title, content, author
+funktion für daten senden: 
+handlesubmit, async 
+vgl backend was für daten werden geschickt?
+const newPost -> {
+    title: titleRef.current.value
+    content: contentRef.current.value
+    author: authorRef.current.value
+}
+const {data} =  await axios.post mit route /api/addPost
+holt sich so nur data so spart man sich res.data
+
+ID vom autor holen und manuell beim feld auhtor eingeben
+check in console
+
+status code 500 verwenden 
+
+refresh state in dependency array packen
+und komponente an form weitergeben
+setRefresh -> prev => !prev
+wenn form submitted wird wird wert umgedreht wegen! 
+wert für refresh hat sich geändert - führe fetch nochmal aus
+
+-------
+
+in home delte Btn zufügen
+unter use Effect neue Funktion
+postId wird übergeben 
+axios.delete `/api/deletePost/${postId}`
+nach löschen soll neu gefetcht werden deshalb setRefresh hinzufügen und wert wieder umdrehen
+onclick im return -> mit parameter post._id
+
+
