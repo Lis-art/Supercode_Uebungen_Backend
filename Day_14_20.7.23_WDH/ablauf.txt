@@ -3,8 +3,8 @@ VORGEHENSWEISE:
 //Schritt 1: Packages installieren
 npm init -y
 npm i express cors mongoose
-npm i morgan
-npm uuid nicht nötig bei mongoose
+npm i morgan multer cloudinary
+npm uuid nicht nötig bei mongoose dotenv
 
 //Schritt 2: Änderungen in package json - module,script-dev
 "type":"module",
@@ -37,7 +37,8 @@ PUT -> bearbeiten
 DELETE -> löschen
 
 //Schritt 8: 
-mongoosemodels ordner im Backendindex.js drin
+mongoose models ordner im Backend 
+index.js drin
 import mongoose from "mongoose"
 mongoose.connect("mongodb://localhost:27017")
 //für Uri ("mongodb://localhost:27017/NAME DER DATENBANK") in mongo db oben links string copy
@@ -91,7 +92,9 @@ import {Car} from "./models/CarModel.js"
   "wheels":4
 }
 
-JETZT Check in MongoDB ob post erschienen install
+JETZT Check in MongoDB ob post erschienen 
+
+===============================================================
 
 FRONTEND
 //Schritt 1: 
@@ -116,3 +119,13 @@ Funktion aufstellen
 danach Test im Browser on Object in console angezeigt wird
 
 // Schritt 5: Proxy in vite eingeben wenn man es nutzt!
+export default defineConfig({
+  plugins: [react()],
+  server:{
+    port:3000,
+    proxy: {
+      "/api": {target: "http://localhost:3001/", changeOrigin: true}
+    }
+  }
+})
+
