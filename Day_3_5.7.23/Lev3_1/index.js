@@ -1,3 +1,6 @@
+// # In dieser Übung geht es darum, zu überprüfen, ob eine .txt-Datei bereits existiert. Falls dies nicht der Fall ist, soll sie erstellt werden. Falls sie bereits existiert, soll mithilfe eines Parameters eine neue Zeile in der Datei hinzugefügt werden.
+
+
 import fsPromise from "node:fs/promises";
 import fs from "node:fs";
 
@@ -16,7 +19,7 @@ await fsPromise.mkdir(neueDatei, {recursive: true, encoding: "utf8"}),
 
 //Function mit Parameter
 function gibParam(param) {
-    //gibt es TextParth datei?
+    //gibt es TextPath Datei?
     //wenn nicht erstelle TextFile mit übergebenem Parameter
     if(fs.existsSync(txtPath)){
         fs.appendFileSync(txtPath, `\${param}`, {encoding: "utf8"})

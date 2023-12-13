@@ -1,11 +1,13 @@
+// # Erstelle dir eine JSON Datei mit dem Code aus dem Kommentarbereich.
+// # Importiere die json-Datei in deiner index.js und nutze das File System, um die JSON Datei in eine neue .txt-Datei zu schreiben.
+
 
 import fsPromise from "node:fs/promises";
 import fs from "node:fs";
 
 try {
     const jsonPath = new URL("./data.json", import.meta.url)
-    const jsonData = await fsPromise
-    .readFile(jsonPath, {encoding: "utf-8"})
+    const jsonData = await fsPromise.readFile(jsonPath, {encoding: "utf-8"})
     .then ((fsData) => JSON.parse(fsData))
     console.log(jsonData);
     //Array mit Objecten in fsdata drin durch parsen
